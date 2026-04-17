@@ -80,11 +80,11 @@
     position: absolute;
     bottom: -3px; left: 0;
     width: 0; height: 1px;
-    background: var(--linen);
+    background: var(--terracotta);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  nav.nav-light .nav-links a::after { background: var(--ink); }
+  nav.nav-light .nav-links a::after { background: var(--terracotta); }
   .nav-links a:hover::after { width: 100%; }
 
   /* ─── HAMBURGER ─── */
@@ -237,12 +237,12 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(30,30,30,0.4);
+    color: var(--terracotta);
     margin-bottom: 24px;
   }
 
   .eyebrow-linen {
-    color: rgba(244,242,235,0.4);
+    color: var(--terracotta);
   }
 
   /* ─── ABOUT ─── */
@@ -663,7 +663,7 @@
     transition: border-color 0.3s, color 0.3s;
   }
 
-  .contact-social-links a:hover { border-color: var(--ink); }
+  .contact-social-links a:hover { border-color: var(--terracotta); color: var(--terracotta); }
 
   /* Form */
   .contact-form { display: flex; flex-direction: column; gap: 0; }
@@ -694,7 +694,7 @@
     position: absolute;
     bottom: -1px; left: 0;
     width: 0; height: 1px;
-    background: var(--ink);
+    background: var(--terracotta);
     transition: width 0.4s ease;
   }
 
@@ -710,19 +710,19 @@
     align-self: flex-start;
     margin-top: 40px;
     padding: 16px 40px;
-    background: var(--ink);
+    background: var(--terracotta);
     color: var(--linen);
-    border: 1px solid var(--ink);
+    border: 1px solid var(--terracotta);
     font-family: var(--font);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.4s, color 0.4s;
+    transition: background 0.4s, color 0.4s, border-color 0.4s;
   }
 
-  .form-submit:hover { background: transparent; color: var(--ink); }
+  .form-submit:hover { background: transparent; color: var(--terracotta); }
 
   /* ─── FOOTER ─── */
   footer {
@@ -800,7 +800,7 @@
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 0;
-    background: var(--linen);
+    background: var(--terracotta);
     animation: loadBar 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
   }
 
