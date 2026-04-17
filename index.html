@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nteriors London — Curated Interiors for Modern Living</title>
-<link href="https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1E1E1E;
@@ -14,107 +14,80 @@
     --blush: #BB8982;
     --espresso: #503D41;
     --cognac: #8A5C44;
-    --crimson: #A81F1F;
     --font: 'Gantari', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  ::selection {
-    background: var(--terracotta);
-    color: var(--linen);
-  }
+  ::selection { background: var(--ink); color: var(--linen); }
 
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-  }
+  html { scroll-behavior: smooth; font-size: 16px; }
 
   body {
     font-family: var(--font);
     background: var(--linen);
     color: var(--ink);
-    letter-spacing: -0.025em;
     overflow-x: hidden;
   }
 
   /* ─── NAV ─── */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 48px;
+    padding: 32px 60px;
     background: var(--ink);
-    transition: padding 0.4s ease, background 0.5s ease;
+    transition: padding 0.5s ease, background 0.5s ease;
   }
 
-  nav.scrolled {
-    padding: 18px 48px;
-  }
-
-  /* Light nav state (over linen sections) */
-  nav.nav-light {
-    background: var(--linen);
-  }
+  nav.scrolled { padding: 20px 60px; }
+  nav.nav-light { background: var(--linen); }
 
   .logo-wordmark {
-    height: 18px;
+    height: 17px;
     width: auto;
     display: block;
     filter: none;
     transition: filter 0.5s ease;
   }
 
-  nav.nav-light .logo-wordmark {
-    filter: invert(1);
-  }
+  nav.nav-light .logo-wordmark { filter: invert(1); }
 
   .nav-links {
     display: flex;
-    gap: 36px;
+    gap: 40px;
     list-style: none;
   }
 
   .nav-links a {
     color: var(--linen);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     position: relative;
-    transition: color 0.5s ease, opacity 0.3s;
+    transition: color 0.5s ease;
   }
 
-  nav.nav-light .nav-links a {
-    color: var(--ink);
-  }
+  nav.nav-light .nav-links a { color: var(--ink); }
 
   .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
     background: var(--linen);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  nav.nav-light .nav-links a::after {
-    background: var(--ink);
-  }
+  nav.nav-light .nav-links a::after { background: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
 
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  /* ─── HAMBURGER (mobile) ─── */
+  /* ─── HAMBURGER ─── */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -125,652 +98,16 @@
 
   .hamburger span {
     width: 24px;
-    height: 2px;
+    height: 1.5px;
     background: var(--linen);
     transition: background 0.5s ease, transform 0.3s, opacity 0.3s;
   }
 
-  nav.nav-light .hamburger span {
-    background: var(--ink);
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    background: var(--ink);
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, var(--ink) 0%, rgba(30,30,30,0.92) 60%, rgba(30,30,30,0.75) 100%);
-  }
-
-  /* Subtle linen grain overlay */
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.35;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 48px 80px;
-    max-width: 900px;
-    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 24px;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.12;
-    color: var(--linen);
-    margin-bottom: 28px;
-    letter-spacing: -0.03em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--blush);
-  }
-
-  .hero-tagline {
-    font-size: 1.1rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(244, 242, 235, 0.65);
-    max-width: 520px;
-  }
-
-  .hero-cta {
-    margin-top: 40px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 36px;
-    background: transparent;
-    border: 1px solid rgba(244,242,235,0.25);
-    color: var(--linen);
-    font-family: var(--font);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.4s ease;
-  }
-
-  .hero-cta:hover {
-    background: var(--linen);
-    color: var(--ink);
-    border-color: var(--linen);
-  }
-
-  .hero-cta svg {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.3s;
-  }
-
-  .hero-cta:hover svg {
-    transform: translateX(4px);
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 32px;
-    right: 48px;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    animation: fadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-    opacity: 0;
-  }
-
-  .hero-scroll span {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(244,242,235,0.4);
-    writing-mode: vertical-rl;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, rgba(244,242,235,0.3), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
-
-  /* ─── SECTION SHARED ─── */
-  section {
-    padding: 120px 48px;
-  }
-
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 20px;
-  }
-
-  .section-heading {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-bottom: 32px;
-  }
-
-  /* ─── ABOUT ─── */
-  .about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    max-width: 1300px;
-    margin: 0 auto;
-    align-items: start;
-  }
-
-  .about-text p {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    font-weight: 300;
-    color: rgba(30,30,30,0.75);
-    margin-bottom: 20px;
-  }
-
-  .about-visual {
-    position: relative;
-    aspect-ratio: 3/4;
-    background: linear-gradient(145deg, var(--espresso), var(--cognac));
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .about-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-    opacity: 0.5;
-  }
-
-  .about-visual-label {
-    position: absolute;
-    bottom: 32px;
-    left: 32px;
-    color: var(--linen);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
-
-  .about-stats {
-    display: flex;
-    gap: 48px;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(30,30,30,0.1);
-  }
-
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--terracotta);
-  }
-
-  .stat-label {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: rgba(30,30,30,0.5);
-    text-transform: uppercase;
-  }
-
-  /* ─── PHILOSOPHY (full-width band) ─── */
-  .philosophy {
-    background: var(--ink);
-    color: var(--linen);
-    text-align: center;
-    padding: 140px 48px;
-  }
-
-  .philosophy .section-heading {
-    max-width: 800px;
-    margin: 0 auto 0;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 300;
-    line-height: 1.5;
-    color: rgba(244,242,235,0.85);
-  }
-
-  .philosophy .section-heading em {
-    font-style: italic;
-    color: var(--blush);
-  }
-
-  /* ─── SERVICES ─── */
-  .services {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(30,30,30,0.08);
-    margin-top: 60px;
-  }
-
-  .service-card {
-    background: var(--linen);
-    padding: 48px 36px;
-    transition: all 0.5s ease;
-    position: relative;
-    cursor: default;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--terracotta);
-    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .service-card:hover::before {
-    width: 100%;
-  }
-
-  .service-card:hover {
-    background: rgba(244,242,235,0.5);
-  }
-
-  .service-number {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--terracotta);
-    margin-bottom: 24px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .service-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-
-  .service-desc {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    font-weight: 300;
-    color: rgba(30,30,30,0.6);
-  }
-
-  /* ─── GALLERY STRIP ─── */
-  .gallery {
-    padding: 120px 0;
-    overflow: hidden;
-  }
-
-  .gallery-header {
-    padding: 0 48px;
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .gallery-track {
-    display: flex;
-    gap: 20px;
-    padding: 0 48px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .gallery-track::-webkit-scrollbar { display: none; }
-
-  .gallery-item {
-    flex: 0 0 auto;
-    width: 380px;
-    aspect-ratio: 3/4;
-    border-radius: 2px;
-    overflow: hidden;
-    scroll-snap-align: start;
-    position: relative;
-    cursor: pointer;
-  }
-
-  .gallery-item-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .gallery-item:hover .gallery-item-bg {
-    transform: scale(1.05);
-  }
-
-  .gallery-item-label {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    right: 24px;
-    color: var(--linen);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.4s ease;
-  }
-
-  .gallery-item:hover .gallery-item-label {
-    opacity: 0.8;
-    transform: translateY(0);
-  }
-
-  /* ─── TESTIMONIAL ─── */
-  .testimonial {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 100px 48px 140px;
-  }
-
-  .testimonial-quote {
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    font-weight: 300;
-    line-height: 1.6;
-    font-style: italic;
-    color: rgba(30,30,30,0.8);
-    margin-bottom: 32px;
-    position: relative;
-  }
-
-  .testimonial-quote::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: var(--terracotta);
-    margin: 0 auto 32px;
-  }
-
-  .testimonial-attr {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cognac);
-  }
-
-  /* ─── CTA BAND ─── */
-  .cta-band {
-    background: var(--ink);
-    color: var(--linen);
-    padding: 100px 48px;
-    text-align: center;
-  }
-
-  .cta-band .section-heading {
-    color: var(--linen);
-    max-width: 700px;
-    margin: 0 auto 16px;
-  }
-
-  .cta-band p {
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(244,242,235,0.55);
-    max-width: 560px;
-    margin: 0 auto 40px;
-  }
-
-  .cta-band .hero-cta {
-    display: inline-flex;
-  }
-
-  /* ─── CONTACT ─── */
-  .contact {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .contact-info h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-
-  .contact-info p, .contact-info a {
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: rgba(30,30,30,0.6);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .contact-info a:hover {
-    color: var(--terracotta);
-  }
-
-  .contact-block {
-    margin-bottom: 36px;
-  }
-
-  .contact-social {
-    display: flex;
-    gap: 24px;
-    margin-top: 12px;
-  }
-
-  .contact-social a {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    position: relative;
-  }
-
-  .contact-social a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--terracotta);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .contact-social a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  /* Contact Form */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .form-group {
-    position: relative;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 16px 0;
-    border: none;
-    border-bottom: 1px solid rgba(30,30,30,0.15);
-    background: transparent;
-    font-family: var(--font);
-    font-size: 0.95rem;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    outline: none;
-    transition: border-color 0.3s;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: var(--terracotta);
-  }
-
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: rgba(30,30,30,0.35);
-  }
-
-  .form-group textarea {
-    resize: none;
-    min-height: 120px;
-  }
-
-  .form-submit {
-    align-self: flex-start;
-    padding: 16px 40px;
-    background: var(--ink);
-    color: var(--linen);
-    border: 1px solid var(--ink);
-    font-family: var(--font);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s ease;
-  }
-
-  .form-submit:hover {
-    background: transparent;
-    color: var(--ink);
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--ink);
-    color: var(--linen);
-    padding: 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-logo img {
-    height: 16px;
-    width: auto;
-    display: block;
-  }
-
-  .footer-right {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-
-  .footer-right span,
-  .footer-right a {
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(244,242,235,0.4);
-    text-decoration: none;
-  }
-
-  .footer-right a:hover {
-    color: var(--linen);
-  }
-
-  /* ─── SCROLL ANIMATIONS ─── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  nav.nav-light .hamburger span { background: var(--ink); }
+
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* ─── MOBILE MENU ─── */
   .mobile-menu {
@@ -781,107 +118,650 @@
     z-index: 99;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 40px;
+    align-items: flex-start;
+    padding: 0 60px;
+    gap: 0;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
   }
 
-  .mobile-menu.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
 
   .mobile-menu a {
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 200;
+    letter-spacing: -0.03em;
     color: var(--linen);
     text-decoration: none;
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+    border-bottom: 1px solid rgba(244,242,235,0.08);
+    width: 100%;
+    padding: 20px 0;
   }
 
-  .mobile-menu.open a {
-    opacity: 1;
-    transform: translateY(0);
+  .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+  .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
+  .mobile-menu.open a:nth-child(2) { transition-delay: 0.14s; }
+  .mobile-menu.open a:nth-child(3) { transition-delay: 0.2s; }
+  .mobile-menu.open a:nth-child(4) { transition-delay: 0.26s; }
+  .mobile-menu a:hover { color: rgba(244,242,235,0.45); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 680px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
   }
 
-  .mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
-  .mobile-menu.open a:nth-child(2) { transition-delay: 0.17s; }
-  .mobile-menu.open a:nth-child(3) { transition-delay: 0.24s; }
-  .mobile-menu.open a:nth-child(4) { transition-delay: 0.31s; }
-
-  .mobile-menu a:hover { color: var(--terracotta); }
-
-  /* Hamburger → X animation */
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger.active span:nth-child(2) {
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
+    gap: 60px;
+    animation: heroIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     opacity: 0;
   }
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    section { padding: 80px 24px; }
+  .hero-text { max-width: 900px; }
 
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .mobile-menu { display: flex; }
-
-    .hero-content { padding: 0 24px 60px; }
-    .hero-scroll { right: 24px; }
-
-    .about {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    .about-visual {
-      aspect-ratio: 4/3;
-    }
-
-    .about-stats {
-      gap: 32px;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .gallery-item {
-      width: 280px;
-    }
-
-    .gallery-header { padding: 0 24px; }
-    .gallery-track { padding: 0 24px; }
-
-    .contact {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    footer {
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-      padding: 36px 24px;
-    }
-
-    .footer-right {
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .philosophy { padding: 80px 24px; }
-    .cta-band { padding: 80px 24px; }
+  .hero-meta {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,242,235,0.35);
+    margin-bottom: 32px;
   }
+
+  .hero h1 {
+    font-size: clamp(3.2rem, 7vw, 7.5rem);
+    font-weight: 200;
+    line-height: 1.04;
+    color: var(--linen);
+    letter-spacing: -0.04em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 200;
+    color: rgba(244,242,235,0.45);
+  }
+
+  .hero-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 6px;
+  }
+
+  .hero-aside span {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,242,235,0.25);
+    writing-mode: vertical-rl;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(244,242,235,0.2), transparent);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ─── SHARED ─── */
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.4);
+    margin-bottom: 24px;
+  }
+
+  .eyebrow-linen {
+    color: rgba(244,242,235,0.4);
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    padding: 160px 60px;
+    border-top: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .about-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .about-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 100px;
+  }
+
+  .about-headline {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .about-right {
+    padding-top: 8px;
+  }
+
+  .about-right p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(30,30,30,0.65);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(30,30,30,0.1);
+  }
+
+  .stat-item {
+    padding: 40px 0;
+    border-right: 1px solid rgba(30,30,30,0.08);
+    padding-right: 40px;
+  }
+
+  .stat-item:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
+  .stat-item:not(:first-child) { padding-left: 40px; }
+
+  .stat-num {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.35);
+  }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy {
+    background: var(--ink);
+    padding: 160px 60px;
+  }
+
+  .philosophy-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .philosophy-quote {
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--linen);
+    max-width: 1100px;
+  }
+
+  .philosophy-quote em {
+    font-style: italic;
+    color: rgba(244,242,235,0.35);
+  }
+
+  .philosophy-footer {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(244,242,235,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .philosophy-attr {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,242,235,0.25);
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    padding: 160px 60px;
+    border-top: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .services-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .services-headline {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .services-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(30,30,30,0.55);
+    letter-spacing: -0.01em;
+    max-width: 480px;
+  }
+
+  .services-list { border-top: 1px solid rgba(30,30,30,0.1); }
+
+  .service-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 40px;
+    gap: 40px;
+    align-items: start;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(30,30,30,0.08);
+    cursor: default;
+    transition: background 0.3s;
+  }
+
+  .service-item:hover { background: rgba(30,30,30,0.02); margin: 0 -60px; padding: 40px 60px; }
+
+  .service-num {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: rgba(30,30,30,0.3);
+    padding-top: 4px;
+  }
+
+  .service-name {
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    padding-top: 2px;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(30,30,30,0.5);
+    letter-spacing: -0.005em;
+  }
+
+  .service-arrow {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 4px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+    color: rgba(30,30,30,0.3);
+  }
+
+  .service-item:hover .service-arrow { opacity: 1; transform: translateX(0); }
+  .service-arrow svg { width: 16px; height: 16px; }
+
+  /* ─── GALLERY ─── */
+  #work {
+    padding: 160px 60px;
+    border-top: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .gallery-inner { max-width: 1400px; margin: 0 auto; }
+
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+
+  .gallery-headline {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 200;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .gallery-count {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.3);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(30,30,30,0.05);
+  }
+
+  .gallery-item:nth-child(1) { aspect-ratio: 4/5; }
+  .gallery-item:nth-child(2) { aspect-ratio: 4/5; margin-top: 80px; }
+  .gallery-item:nth-child(3) { aspect-ratio: 16/10; }
+  .gallery-item:nth-child(4) { aspect-ratio: 16/10; margin-top: -80px; }
+
+  .gallery-item-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery-item:hover .gallery-item-bg { transform: scale(1.04); }
+
+  .gallery-item-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 60px 28px 24px;
+    background: linear-gradient(to top, rgba(30,30,30,0.6) 0%, transparent 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .gallery-item:hover .gallery-item-info { opacity: 1; }
+
+  .gallery-item-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--linen);
+  }
+
+  .gallery-item-idx {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(244,242,235,0.5);
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--ink);
+    padding: 160px 60px;
+  }
+
+  .cta-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .cta-headline {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 200;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--linen);
+    max-width: 800px;
+  }
+
+  .cta-action { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+
+  .cta-sub {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(244,242,235,0.35);
+    text-align: right;
+    max-width: 280px;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border: 1px solid rgba(244,242,235,0.2);
+    color: var(--linen);
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.4s, border-color 0.4s, color 0.4s;
+    white-space: nowrap;
+  }
+
+  .btn-outline:hover {
+    background: var(--linen);
+    color: var(--ink);
+    border-color: var(--linen);
+  }
+
+  .btn-outline svg { width: 14px; height: 14px; transition: transform 0.3s; }
+  .btn-outline:hover svg { transform: translateX(4px); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    padding: 160px 60px;
+    border-top: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .contact-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 120px;
+    align-items: start;
+  }
+
+  .contact-left {}
+
+  .contact-headline {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 200;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 60px;
+  }
+
+  .contact-details { display: flex; flex-direction: column; gap: 32px; }
+
+  .contact-detail-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(30,30,30,0.35);
+    margin-bottom: 6px;
+  }
+
+  .contact-detail-value {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.3s;
+  }
+
+  a.contact-detail-value:hover { color: rgba(30,30,30,0.4); }
+
+  .contact-social-links {
+    display: flex;
+    gap: 24px;
+    margin-top: 4px;
+  }
+
+  .contact-social-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(30,30,30,0.2);
+    padding-bottom: 2px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .contact-social-links a:hover { border-color: var(--ink); }
+
+  /* Form */
+  .contact-form { display: flex; flex-direction: column; gap: 0; }
+
+  .form-field {
+    position: relative;
+    border-bottom: 1px solid rgba(30,30,30,0.12);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 22px 0;
+    border: none;
+    background: transparent;
+    font-family: var(--font);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    outline: none;
+  }
+
+  .form-field textarea { resize: none; min-height: 140px; }
+
+  .form-field::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width 0.4s ease;
+  }
+
+  .form-field:focus-within::after { width: 100%; }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: rgba(30,30,30,0.28);
+    font-weight: 300;
+  }
+
+  .form-submit {
+    align-self: flex-start;
+    margin-top: 40px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: var(--linen);
+    border: 1px solid var(--ink);
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  .form-submit:hover { background: transparent; color: var(--ink); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(244,242,235,0.06);
+  }
+
+  .footer-logo img { height: 15px; width: auto; display: block; }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .footer-links a,
+  .footer-links span {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: rgba(244,242,235,0.28);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: rgba(244,242,235,0.7); }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ─── LOADER ─── */
   #loader {
@@ -893,47 +773,40 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 48px;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    gap: 52px;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
   }
 
-  #loader.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
 
   .loader-logo {
-    height: 22px;
+    height: 20px;
     width: auto;
     opacity: 0;
-    animation: loaderFadeIn 0.8s ease 0.2s forwards;
+    animation: fadeIn 0.8s ease 0.2s forwards;
   }
 
-  @keyframes loaderFadeIn {
-    to { opacity: 1; }
-  }
+  @keyframes fadeIn { to { opacity: 1; } }
 
   .loader-bar-track {
-    width: 160px;
+    width: 140px;
     height: 1px;
-    background: rgba(244,242,235,0.15);
+    background: rgba(244,242,235,0.12);
     position: relative;
     overflow: hidden;
   }
 
   .loader-bar-fill {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
+    top: 0; left: 0;
+    height: 100%; width: 0;
     background: var(--linen);
-    animation: loaderBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    animation: loadBar 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
   }
 
-  @keyframes loaderBar {
+  @keyframes loadBar {
     0%   { width: 0; }
-    60%  { width: 85%; }
+    65%  { width: 80%; }
     100% { width: 100%; }
   }
 
@@ -951,87 +824,119 @@
     transition: opacity 0.4s ease, visibility 0.4s ease;
   }
 
-  #lightbox.open {
-    opacity: 1;
-    visibility: visible;
-  }
+  #lightbox.open { opacity: 1; visibility: visible; }
 
   .lightbox-img {
     max-width: 88vw;
     max-height: 88vh;
     object-fit: contain;
-    border-radius: 2px;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
   }
 
-  .lightbox-img.switching {
-    opacity: 0;
-  }
+  .lightbox-img.switching { opacity: 0; }
 
   .lightbox-close {
     position: absolute;
-    top: 28px;
-    right: 36px;
-    background: none;
-    border: none;
+    top: 28px; right: 40px;
+    background: none; border: none;
     color: var(--linen);
     font-family: var(--font);
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
-    opacity: 0.6;
+    opacity: 0.45;
     transition: opacity 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
   }
 
   .lightbox-close:hover { opacity: 1; }
-
-  .lightbox-close svg { width: 16px; height: 16px; }
+  .lightbox-close svg { width: 14px; height: 14px; }
 
   .lightbox-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: none;
-    border: 1px solid rgba(244,242,235,0.2);
+    border: 1px solid rgba(244,242,235,0.15);
     color: var(--linen);
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     transition: background 0.3s, border-color 0.3s;
   }
 
   .lightbox-nav:hover {
-    background: rgba(244,242,235,0.1);
-    border-color: rgba(244,242,235,0.5);
+    background: rgba(244,242,235,0.08);
+    border-color: rgba(244,242,235,0.4);
   }
 
-  .lightbox-nav svg { width: 18px; height: 18px; }
+  .lightbox-nav svg { width: 16px; height: 16px; }
   .lightbox-prev { left: 28px; }
   .lightbox-next { right: 28px; }
 
   .lightbox-counter {
     position: absolute;
-    bottom: 28px;
-    left: 50%;
+    bottom: 28px; left: 50%;
     transform: translateX(-50%);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.2em;
-    color: rgba(244,242,235,0.4);
+    letter-spacing: 0.22em;
+    color: rgba(244,242,235,0.3);
     text-transform: uppercase;
   }
 
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .service-item { grid-template-columns: 60px 1fr 1fr 32px; gap: 24px; }
+    .about-top { gap: 60px; }
+    .contact-inner { gap: 80px; }
+  }
+
   @media (max-width: 768px) {
+    nav { padding: 20px 28px; }
+    nav.scrolled { padding: 14px 28px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; padding: 0 28px; }
+
+    #about, #services, #work, #contact { padding: 100px 28px; }
+    .philosophy, .cta-band { padding: 100px 28px; }
+    footer { padding: 32px 28px; }
+
+    .hero-content { padding: 0 28px 60px; grid-template-columns: 1fr; }
+    .hero-aside { display: none; }
+
+    .about-top { grid-template-columns: 1fr; gap: 40px; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .stat-item:last-child { padding-left: 0; padding-right: 0; border-right: none; }
+    .stat-item:first-child { padding-right: 0; }
+    .stat-item:not(:first-child) { padding-left: 0; }
+
+    .services-header { grid-template-columns: 1fr; gap: 24px; }
+    .service-item { grid-template-columns: 40px 1fr; gap: 16px; }
+    .service-desc, .service-arrow { display: none; }
+    .service-item:hover { margin: 0; padding: 40px 0; }
+
+    .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+    .gallery-item:nth-child(1) { aspect-ratio: 4/3; }
+    .gallery-item:nth-child(2) { aspect-ratio: 4/3; margin-top: 0; }
+    .gallery-item:nth-child(3) { aspect-ratio: 4/3; }
+    .gallery-item:nth-child(4) { aspect-ratio: 4/3; margin-top: 0; }
+    .gallery-item-info { opacity: 1; }
+
+    .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+    .cta-action { align-items: flex-start; }
+    .cta-sub { text-align: left; }
+
+    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
     .lightbox-nav { display: none; }
-    .lightbox-img { max-width: 96vw; max-height: 80vh; }
+    .lightbox-img { max-width: 96vw; max-height: 82vh; }
   }
 </style>
 </head>
@@ -1073,9 +978,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
@@ -1089,187 +992,214 @@
 
 <!-- HERO -->
 <section class="hero" data-nav="dark">
-  <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Interior Design Studio, London</div>
-    <h1>Curated interiors that balance beauty, function and <em>individuality</em></h1>
-    <p class="hero-tagline">Intentional spaces layered with warmth, depth and emotion to support the rhythms of modern living.</p>
-    <a href="#contact" class="hero-cta">
-      Book a Consultation
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+    <div class="hero-text">
+      <p class="hero-meta">Interior Design Studio — London</p>
+      <h1>Curated interiors that balance beauty, function and <em>individuality</em></h1>
+    </div>
+    <div class="hero-aside">
+      <span>Scroll</span>
+      <div class="hero-line"></div>
+    </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" data-nav="light">
-  <div class="about">
-    <div class="about-text reveal">
-      <div class="section-eyebrow">The Studio</div>
-      <h2 class="section-heading">Spaces that tell a story and truly reflect the people who inhabit them</h2>
-      <p>Nteriors is a London-based interior design studio founded in 2023 by Nali Malungu. Trained as an interior designer with a background in project management, Nali brings both creativity and structure to every project.</p>
-      <p>Drawing inspiration from her expressive Congolese heritage, Nteriors explores colour, form, texture, and materials to craft interiors that feel layered, soulful, and full of character. Grounded in faith and guided by harmony, each space is as functional as it is beautiful.</p>
-      <div class="about-stats">
-        <div class="stat-item">
-          <span class="stat-number">2023</span>
-          <span class="stat-label">Founded</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">London</span>
-          <span class="stat-label">Based</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">Full</span>
-          <span class="stat-label">Service</span>
-        </div>
+  <div class="about-inner">
+    <div class="about-top">
+      <div class="reveal">
+        <p class="eyebrow">The Studio</p>
+        <h2 class="about-headline">Spaces that tell a story and truly reflect the people who inhabit them</h2>
+      </div>
+      <div class="about-right reveal" style="transition-delay: 0.1s;">
+        <p>Nteriors is a London-based interior design studio founded in 2023 by Nali Malungu. Trained as an interior designer with a background in project management, Nali brings both creativity and structure to every project.</p>
+        <p>Drawing inspiration from her expressive Congolese heritage, Nteriors explores colour, form, texture, and materials to craft interiors that feel layered, soulful, and full of character. Grounded in faith and guided by harmony, each space is as functional as it is beautiful.</p>
       </div>
     </div>
-    <div class="about-visual reveal" style="transition-delay: 0.15s;">
-      <span class="about-visual-label">Nali Malungu, Founder</span>
+    <div class="about-stats reveal" style="transition-delay: 0.2s;">
+      <div class="stat-item">
+        <span class="stat-num">2023</span>
+        <span class="stat-label">Founded</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">London</span>
+        <span class="stat-label">Based</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Full Service</span>
+        <span class="stat-label">Studio</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PHILOSOPHY BAND -->
+<!-- PHILOSOPHY -->
 <section class="philosophy" data-nav="dark">
-  <div class="section-eyebrow reveal" style="color: var(--blush);">Philosophy</div>
-  <h2 class="section-heading reveal" style="transition-delay: 0.1s;">
-    The boutique studio intentionally curates spaces that elevate everyday living. Interiors layered with warmth, depth and <em>emotion</em> to support the rhythms of modern living.
-  </h2>
+  <div class="philosophy-inner">
+    <p class="eyebrow eyebrow-linen reveal">Philosophy</p>
+    <blockquote class="philosophy-quote reveal" style="transition-delay: 0.1s;">
+      The boutique studio intentionally curates spaces that elevate everyday living — interiors layered with warmth, depth and <em>emotion</em> to support the rhythms of modern life.
+    </blockquote>
+    <div class="philosophy-footer reveal" style="transition-delay: 0.2s;">
+      <span class="philosophy-attr">Nteriors London — Est. 2023</span>
+      <a href="#contact" class="btn-outline">
+        Start a Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="services" data-nav="light">
-  <div class="section-eyebrow reveal">What We Do</div>
-  <h2 class="section-heading reveal" style="transition-delay: 0.1s;">Services</h2>
-
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-number">01</div>
-      <h3 class="service-title">Discovery & Consultation</h3>
-      <p class="service-desc">We begin with an initial consultation to understand your brief, vision, lifestyle, needs, and the purpose of the space.</p>
+<section id="services" data-nav="light">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="reveal">
+        <p class="eyebrow">What We Do</p>
+        <h2 class="services-headline">A full-service studio, from concept to completion</h2>
+      </div>
+      <p class="services-intro reveal" style="transition-delay: 0.1s;">
+        Every project is approached with intention. We combine creative direction with rigorous project management to deliver spaces that are both beautiful and functional.
+      </p>
     </div>
-    <div class="service-card reveal" style="transition-delay: 0.08s;">
-      <div class="service-number">02</div>
-      <h3 class="service-title">Concept Development</h3>
-      <p class="service-desc">We create the creative direction for your project, including moodboards, colour palettes, material inspiration, and overall design narrative.</p>
-    </div>
-    <div class="service-card reveal" style="transition-delay: 0.16s;">
-      <div class="service-number">03</div>
-      <h3 class="service-title">Space Planning & Layout</h3>
-      <p class="service-desc">Optimising flow, functionality, and comfort to ensure the space supports everyday living.</p>
-    </div>
-    <div class="service-card reveal" style="transition-delay: 0.24s;">
-      <div class="service-number">04</div>
-      <h3 class="service-title">Design Development</h3>
-      <p class="service-desc">We refine the concepts with detailed selections, drawings and renders covering furniture, finishes, lighting, textures, and key design elements.</p>
-    </div>
-    <div class="service-card reveal" style="transition-delay: 0.32s;">
-      <div class="service-number">05</div>
-      <h3 class="service-title">Project Coordination</h3>
-      <p class="service-desc">Structured support for sourcing, working alongside suppliers and trades to ensure the design is executed smoothly.</p>
-    </div>
-    <div class="service-card reveal" style="transition-delay: 0.4s;">
-      <div class="service-number">06</div>
-      <h3 class="service-title">Styling & Final Finishing</h3>
-      <p class="service-desc">Curating furnishings, decor, and layered details that bring the space together and complete the vision.</p>
+    <div class="services-list">
+      <div class="service-item reveal">
+        <span class="service-num">01</span>
+        <span class="service-name">Discovery &amp; Consultation</span>
+        <p class="service-desc">We begin with an initial consultation to understand your brief, vision, lifestyle, needs, and the purpose of the space.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="service-item reveal" style="transition-delay: 0.06s;">
+        <span class="service-num">02</span>
+        <span class="service-name">Concept Development</span>
+        <p class="service-desc">We create the creative direction for your project, including moodboards, colour palettes, material inspiration, and overall design narrative.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="service-item reveal" style="transition-delay: 0.12s;">
+        <span class="service-num">03</span>
+        <span class="service-name">Space Planning &amp; Layout</span>
+        <p class="service-desc">Optimising flow, functionality, and comfort to ensure the space supports everyday living.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="service-item reveal" style="transition-delay: 0.18s;">
+        <span class="service-num">04</span>
+        <span class="service-name">Design Development</span>
+        <p class="service-desc">We refine concepts with detailed selections, drawings and renders covering furniture, finishes, lighting, textures, and key design elements.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="service-item reveal" style="transition-delay: 0.24s;">
+        <span class="service-num">05</span>
+        <span class="service-name">Project Coordination</span>
+        <p class="service-desc">Structured support for sourcing, working alongside suppliers and trades to ensure the design is executed smoothly.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+      <div class="service-item reveal" style="transition-delay: 0.3s;">
+        <span class="service-num">06</span>
+        <span class="service-name">Styling &amp; Final Finishing</span>
+        <p class="service-desc">Curating furnishings, decor, and layered details that bring the space together and complete the vision.</p>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section class="gallery" id="work" data-nav="light">
-  <div class="gallery-header">
-    <div>
-      <div class="section-eyebrow reveal">Selected Work</div>
-      <h2 class="section-heading reveal" style="transition-delay: 0.1s;">Portfolio</h2>
+<section id="work" data-nav="light">
+  <div class="gallery-inner">
+    <div class="gallery-header reveal">
+      <div>
+        <p class="eyebrow">Selected Work</p>
+        <h2 class="gallery-headline">Portfolio</h2>
+      </div>
+      <span class="gallery-count">04 Projects</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" data-index="0" style="transition-delay: 0.05s;">
+        <img class="gallery-item-bg" src="images/portfolio-1.jpg" alt="Residential, London">
+        <div class="gallery-item-info">
+          <span class="gallery-item-label">Residential, London</span>
+          <span class="gallery-item-idx">01</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal" data-index="1" style="transition-delay: 0.12s;">
+        <img class="gallery-item-bg" src="images/portfolio-2.jpg" alt="Kitchen Design">
+        <div class="gallery-item-info">
+          <span class="gallery-item-label">Kitchen Design</span>
+          <span class="gallery-item-idx">02</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal" data-index="2" style="transition-delay: 0.18s;">
+        <img class="gallery-item-bg" src="images/portfolio-3.jpg" alt="Living Space">
+        <div class="gallery-item-info">
+          <span class="gallery-item-label">Living Space</span>
+          <span class="gallery-item-idx">03</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal" data-index="3" style="transition-delay: 0.24s;">
+        <img class="gallery-item-bg" src="images/portfolio-4.jpg" alt="Concept &amp; Moodboard">
+        <div class="gallery-item-info">
+          <span class="gallery-item-label">Concept &amp; Moodboard</span>
+          <span class="gallery-item-idx">04</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="gallery-track">
-    <div class="gallery-item" data-index="0">
-      <img class="gallery-item-bg" src="images/portfolio-1.jpg" alt="Residential, London">
-      <span class="gallery-item-label">Residential, London</span>
-    </div>
-    <div class="gallery-item" data-index="1">
-      <img class="gallery-item-bg" src="images/portfolio-2.jpg" alt="Kitchen Design">
-      <span class="gallery-item-label">Kitchen Design</span>
-    </div>
-    <div class="gallery-item" data-index="2">
-      <img class="gallery-item-bg" src="images/portfolio-3.jpg" alt="Living Space">
-      <span class="gallery-item-label">Living Space</span>
-    </div>
-    <div class="gallery-item" data-index="3">
-      <img class="gallery-item-bg" src="images/portfolio-4.jpg" alt="Concept & Moodboard">
-      <span class="gallery-item-label">Concept & Moodboard</span>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="testimonial reveal" data-nav="light">
-  <blockquote class="testimonial-quote">
-    Intentional interiors curated harmoniously to elevate modern living
-  </blockquote>
-  <div class="testimonial-attr">Nteriors London</div>
 </section>
 
 <!-- CTA BAND -->
 <section class="cta-band" data-nav="dark">
-  <div class="section-eyebrow reveal" style="color: var(--amber);">Work With Us</div>
-  <h2 class="section-heading reveal" style="transition-delay: 0.1s;">Have a space that deserves thoughtful design?</h2>
-  <p class="reveal" style="transition-delay: 0.2s;">Creativity has no boundaries. Our approach extends beyond residential interiors into any space that deserves a thoughtful, curated design. We would love to hear from you.</p>
-  <a href="#contact" class="hero-cta reveal" style="transition-delay: 0.3s;">
-    Get in Touch
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
+  <div class="cta-inner">
+    <h2 class="cta-headline reveal">Have a space that deserves thoughtful, intentional design?</h2>
+    <div class="cta-action reveal" style="transition-delay: 0.12s;">
+      <p class="cta-sub">Creativity has no boundaries. We'd love to hear about your project.</p>
+      <a href="#contact" class="btn-outline">
+        Get in Touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" data-nav="light">
-  <div class="contact">
-    <div class="contact-info reveal">
-      <div class="section-eyebrow">Contact</div>
-      <h2 class="section-heading">Let's start a conversation</h2>
-
-      <div class="contact-block">
-        <h3>Email</h3>
-        <p><a href="mailto:nali@nteriorslondon.com">nali@nteriorslondon.com</a></p>
-      </div>
-
-      <div class="contact-block">
-        <h3>Location</h3>
-        <p>London, United Kingdom</p>
-      </div>
-
-      <div class="contact-block">
-        <h3>Follow</h3>
-        <div class="contact-social">
-          <a href="https://instagram.com/nteriorslondon" target="_blank">Instagram</a>
-          <a href="https://tiktok.com/@nteriorslondon" target="_blank">TikTok</a>
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 class="contact-headline">Let's start a conversation</h2>
+      <div class="contact-details">
+        <div>
+          <p class="contact-detail-label">Email</p>
+          <a href="mailto:nali@nteriorslondon.com" class="contact-detail-value">nali@nteriorslondon.com</a>
+        </div>
+        <div>
+          <p class="contact-detail-label">Location</p>
+          <span class="contact-detail-value">London, United Kingdom</span>
+        </div>
+        <div>
+          <p class="contact-detail-label">Follow</p>
+          <div class="contact-social-links">
+            <a href="https://instagram.com/nteriorslondon" target="_blank">Instagram</a>
+            <a href="https://tiktok.com/@nteriorslondon" target="_blank">TikTok</a>
+          </div>
+        </div>
+        <div>
+          <p class="contact-detail-label">Services</p>
+          <span class="contact-detail-value">Full room design — concept to completion<br>E-design available upon request</span>
         </div>
       </div>
-
-      <div class="contact-block" style="margin-top: 48px;">
-        <h3>Services Available</h3>
-        <p>Full room design from concept to completion<br>E-design services available upon request</p>
-      </div>
     </div>
-
-    <div class="contact-form reveal" style="transition-delay: 0.15s;">
-      <div class="form-group">
-        <input type="text" placeholder="Your Name" />
+    <div class="contact-form reveal" style="transition-delay: 0.12s;">
+      <div class="form-field">
+        <input type="text" placeholder="Your Name">
       </div>
-      <div class="form-group">
-        <input type="email" placeholder="Email Address" />
+      <div class="form-field">
+        <input type="email" placeholder="Email Address">
       </div>
-      <div class="form-group">
-        <input type="text" placeholder="Subject" />
+      <div class="form-field">
+        <input type="text" placeholder="Subject">
       </div>
-      <div class="form-group">
+      <div class="form-field">
         <textarea placeholder="Tell us about your project..."></textarea>
       </div>
       <button class="form-submit">Send Enquiry</button>
@@ -1280,7 +1210,7 @@
 <!-- FOOTER -->
 <footer data-nav="dark">
   <div class="footer-logo"><img src="nteriors-logo.svg" alt="Nteriors London"></div>
-  <div class="footer-right">
+  <div class="footer-links">
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
@@ -1304,16 +1234,16 @@
     { src: 'images/portfolio-4.jpg', label: 'Concept & Moodboard' },
   ];
 
-  const lightbox     = document.getElementById('lightbox');
-  const lightboxImg  = document.getElementById('lightboxImg');
-  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
+  const lightboxCtr   = document.getElementById('lightboxCounter');
   let current = 0;
 
   function openLightbox(index) {
     current = index;
     lightboxImg.src = images[current].src;
     lightboxImg.alt = images[current].label;
-    lightboxCounter.textContent = `${current + 1} / ${images.length}`;
+    lightboxCtr.textContent = `${current + 1} / ${images.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1329,20 +1259,18 @@
     setTimeout(() => {
       lightboxImg.src = images[current].src;
       lightboxImg.alt = images[current].label;
-      lightboxCounter.textContent = `${current + 1} / ${images.length}`;
+      lightboxCtr.textContent = `${current + 1} / ${images.length}`;
       lightboxImg.classList.remove('switching');
-    }, 200);
+    }, 180);
   }
 
   document.querySelectorAll('.gallery-item').forEach(item => {
-    item.style.cursor = 'pointer';
     item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index)));
   });
 
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', () => navigate(-1));
   document.getElementById('lightboxNext').addEventListener('click', () => navigate(1));
-
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
   document.addEventListener('keydown', e => {
@@ -1352,65 +1280,60 @@
     if (e.key === 'ArrowRight') navigate(1);
   });
 
-  // Nav scroll + theme
+  // ── Nav scroll + theme ──
   const navbar = document.getElementById('navbar');
 
-  function updateNavTheme() {
+  function updateNav() {
     const navBottom = navbar.getBoundingClientRect().bottom;
-    const sections = document.querySelectorAll('[data-nav]');
+    const sections  = document.querySelectorAll('[data-nav]');
     let theme = 'dark';
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= navBottom && rect.bottom > navBottom) {
-        theme = section.dataset.nav;
-      }
+    sections.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.top <= navBottom && r.bottom > navBottom) theme = s.dataset.nav;
     });
     navbar.classList.toggle('nav-light', theme === 'light');
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   }
 
-  window.addEventListener('scroll', updateNavTheme, { passive: true });
-  updateNavTheme();
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 
-  // Mobile menu
-  const hamburger = document.getElementById('hamburger');
+  // ── Mobile menu ──
+  const hamburger  = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
   hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
 
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
       hamburger.classList.remove('active');
       document.body.style.overflow = '';
     });
   });
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  // ── Reveal on scroll ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
 
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  // ── Smooth scroll ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 </script>
