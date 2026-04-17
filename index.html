@@ -58,10 +58,18 @@
   }
 
   .nav-logo img {
-    height: 18px;
     width: auto;
     display: block;
+  }
+
+  .logo-wordmark {
+    height: 18px;
     filter: invert(1);
+  }
+
+  .logo-symbol {
+    height: 32px;
+    display: none;
   }
 
   .nav-links {
@@ -835,6 +843,8 @@
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .mobile-menu { display: flex; }
+    .logo-wordmark { display: none; }
+    .logo-symbol { display: block; }
 
     .hero-content { padding: 0 24px 60px; }
     .hero-scroll { right: 24px; }
@@ -889,7 +899,10 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo"><img src="nteriors-logo.svg" alt="Nteriors"></div>
+  <div class="nav-logo">
+    <img class="logo-wordmark" src="nteriors-logo.svg" alt="Nteriors">
+    <img class="logo-symbol" src="nteriors-symbol.svg" alt="Nteriors">
+  </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
