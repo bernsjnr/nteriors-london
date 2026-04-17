@@ -132,26 +132,16 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, transparent 30%, rgba(30,30,30,0.6) 70%, rgba(30,30,30,0.9) 100%),
-      linear-gradient(135deg, var(--espresso) 0%, var(--ink) 40%, var(--cognac) 80%, var(--terracotta) 100%);
-    background-size: cover;
-    animation: heroShift 20s ease-in-out infinite alternate;
+    background: linear-gradient(160deg, var(--ink) 0%, rgba(30,30,30,0.92) 60%, rgba(30,30,30,0.75) 100%);
   }
 
-  @keyframes heroShift {
-    0% { opacity: 1; }
-    50% { opacity: 0.85; }
-    100% { opacity: 1; }
-  }
-
-  /* Decorative texture overlay */
+  /* Subtle linen grain overlay */
   .hero-bg::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    opacity: 0.4;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
     pointer-events: none;
   }
 
@@ -492,27 +482,14 @@
   .gallery-item-bg {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .gallery-item:hover .gallery-item-bg {
     transform: scale(1.05);
-  }
-
-  .gallery-item:nth-child(1) .gallery-item-bg {
-    background: linear-gradient(160deg, var(--blush), var(--espresso));
-  }
-  .gallery-item:nth-child(2) .gallery-item-bg {
-    background: linear-gradient(160deg, var(--cognac), var(--ink));
-  }
-  .gallery-item:nth-child(3) .gallery-item-bg {
-    background: linear-gradient(160deg, var(--terracotta), var(--espresso));
-  }
-  .gallery-item:nth-child(4) .gallery-item-bg {
-    background: linear-gradient(160deg, var(--amber), var(--cognac));
-  }
-  .gallery-item:nth-child(5) .gallery-item-bg {
-    background: linear-gradient(160deg, var(--espresso), var(--blush));
   }
 
   .gallery-item-label {
@@ -1026,24 +1003,20 @@
   </div>
   <div class="gallery-track">
     <div class="gallery-item">
-      <div class="gallery-item-bg"></div>
+      <img class="gallery-item-bg" src="images/portfolio-1.jpg" alt="Residential, London">
       <span class="gallery-item-label">Residential, London</span>
     </div>
     <div class="gallery-item">
-      <div class="gallery-item-bg"></div>
+      <img class="gallery-item-bg" src="images/portfolio-2.jpg" alt="Kitchen Design">
+      <span class="gallery-item-label">Kitchen Design</span>
+    </div>
+    <div class="gallery-item">
+      <img class="gallery-item-bg" src="images/portfolio-3.jpg" alt="Living Space">
       <span class="gallery-item-label">Living Space</span>
     </div>
     <div class="gallery-item">
-      <div class="gallery-item-bg"></div>
-      <span class="gallery-item-label">Material Study</span>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-bg"></div>
-      <span class="gallery-item-label">Concept Design</span>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-bg"></div>
-      <span class="gallery-item-label">Interior Styling</span>
+      <img class="gallery-item-bg" src="images/portfolio-4.jpg" alt="Concept & Moodboard">
+      <span class="gallery-item-label">Concept & Moodboard</span>
     </div>
   </div>
 </section>
