@@ -398,7 +398,7 @@
 
   .service-item {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr 40px;
+    grid-template-columns: 80px 1fr 1fr;
     gap: 40px;
     align-items: start;
     padding: 40px 0;
@@ -889,7 +889,7 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
-    .service-item { grid-template-columns: 60px 1fr 1fr 32px; gap: 24px; }
+    .service-item { grid-template-columns: 60px 1fr 1fr; gap: 24px; }
     .about-top { gap: 60px; }
     .contact-inner { gap: 80px; }
   }
@@ -915,8 +915,8 @@
     .stat-item:not(:first-child) { padding-left: 0; }
 
     .services-header { grid-template-columns: 1fr; gap: 24px; }
-    .service-item { grid-template-columns: 40px 1fr; gap: 16px; }
-    .service-desc, .service-arrow { display: none; }
+    .service-item { grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+    .service-desc { grid-column: 2; font-size: 0.82rem; margin-top: -8px; }
     .service-item:hover { margin: 0; padding: 40px 0; }
 
     .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -1068,37 +1068,31 @@
         <span class="service-num">01</span>
         <span class="service-name">Discovery &amp; Consultation</span>
         <p class="service-desc">We begin with an initial consultation to understand your brief, vision, lifestyle, needs, and the purpose of the space.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.06s;">
         <span class="service-num">02</span>
         <span class="service-name">Concept Development</span>
         <p class="service-desc">We create the creative direction for your project, including moodboards, colour palettes, material inspiration, and overall design narrative.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.12s;">
         <span class="service-num">03</span>
         <span class="service-name">Space Planning &amp; Layout</span>
         <p class="service-desc">Optimising flow, functionality, and comfort to ensure the space supports everyday living.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.18s;">
         <span class="service-num">04</span>
         <span class="service-name">Design Development</span>
         <p class="service-desc">We refine concepts with detailed selections, drawings and renders covering furniture, finishes, lighting, textures, and key design elements.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.24s;">
         <span class="service-num">05</span>
         <span class="service-name">Project Coordination</span>
         <p class="service-desc">Structured support for sourcing, working alongside suppliers and trades to ensure the design is executed smoothly.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.3s;">
         <span class="service-num">06</span>
         <span class="service-name">Styling &amp; Final Finishing</span>
         <p class="service-desc">Curating furnishings, decor, and layered details that bring the space together and complete the vision.</p>
-        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
     </div>
   </div>
