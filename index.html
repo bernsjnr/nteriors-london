@@ -912,10 +912,20 @@
     .hero-aside { display: none; }
 
     .about-top { grid-template-columns: 1fr; gap: 40px; }
-    .about-stats { grid-template-columns: 1fr 1fr; }
-    .stat-item:last-child { padding-left: 0; padding-right: 0; border-right: none; }
+    .about-stats { grid-template-columns: 1fr; border-top: 1px solid rgba(30,30,30,0.08); }
+    .stat-item {
+      padding: 28px 0;
+      border-right: none;
+      border-bottom: 1px solid rgba(30,30,30,0.08);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .stat-item:last-child { border-bottom: none; padding-left: 0; padding-right: 0; }
     .stat-item:first-child { padding-right: 0; }
     .stat-item:not(:first-child) { padding-left: 0; }
+    .stat-label { margin-top: 0; }
 
     .services-header { grid-template-columns: 1fr; gap: 24px; }
     .service-item { grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
