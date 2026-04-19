@@ -815,10 +815,11 @@
     position: fixed;
     inset: 0;
     background: rgba(30,30,30,0.97);
-    z-index: 500;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -1248,6 +1249,7 @@
   const lightboxImg   = document.getElementById('lightboxImg');
   const lightboxCtr   = document.getElementById('lightboxCounter');
   let current = 0;
+  let savedScrollY = 0;
 
   function openLightbox(index) {
     current = index;
@@ -1255,12 +1257,20 @@
     lightboxImg.alt = images[current].label;
     lightboxCtr.textContent = `${current + 1} / ${images.length}`;
     lightbox.classList.add('open');
+    savedScrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.width = '100%';
   }
 
   function closeLightbox() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedScrollY);
   }
 
   function navigate(dir) {
