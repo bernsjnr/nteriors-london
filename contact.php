@@ -18,7 +18,7 @@ if (!$name || !filter_var($email, FILTER_VALIDATE_EMAIL) || !$message) {
     exit;
 }
 
-$to          = 'nali@nteriorslondon.com';
+$to          = 'info@bernsds.com';
 $subject_line = 'New enquiry: ' . $subject;
 $body        = "Name: {$name}\nEmail: {$email}\n\nMessage:\n{$message}";
 $headers     = implode("\r\n", [
