@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nteriors London — Curated Interiors for Modern Living</title>
+<script>
+  (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -108,6 +111,36 @@
   .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── NAV ACTIONS ─── */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--linen);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+  }
+
+  .theme-toggle:hover { opacity: 1; }
+  .theme-toggle svg { width: 18px; height: 18px; }
+
+  .icon-sun { display: none; }
+  .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  nav.nav-light .theme-toggle { color: var(--ink); }
 
   /* ─── MOBILE MENU ─── */
   .mobile-menu {
@@ -832,6 +865,62 @@
     100% { width: 100%; }
   }
 
+  /* ─── DARK MODE ─── */
+  [data-theme="dark"] body {
+    background: #181818;
+    color: #E8E6DF;
+  }
+
+  /* Nav: keep dark when over sections that are now dark in dark mode */
+  [data-theme="dark"] nav.nav-light { background: var(--ink); }
+  [data-theme="dark"] nav.nav-light .nav-links a { color: var(--linen); }
+  [data-theme="dark"] nav.nav-light .logo-wordmark { filter: none; }
+  [data-theme="dark"] nav.nav-light .hamburger span { background: var(--linen); }
+  [data-theme="dark"] nav.nav-light .theme-toggle { color: var(--linen); }
+
+  /* Content-section hardcoded dark colors → flip to light */
+  [data-theme="dark"] #about,
+  [data-theme="dark"] #services,
+  [data-theme="dark"] #work,
+  [data-theme="dark"] #contact { border-top-color: rgba(232,230,223,0.08); }
+
+  [data-theme="dark"] .about-right p { color: rgba(232,230,223,0.65); }
+  [data-theme="dark"] .about-stats { border-top-color: rgba(232,230,223,0.1); }
+  [data-theme="dark"] .stat-item { border-right-color: rgba(232,230,223,0.08); border-bottom-color: rgba(232,230,223,0.08); }
+  [data-theme="dark"] .stat-num { color: #E8E6DF; }
+  [data-theme="dark"] .stat-label { color: rgba(232,230,223,0.35); }
+
+  [data-theme="dark"] .services-intro { color: rgba(232,230,223,0.55); }
+  [data-theme="dark"] .services-list { border-top-color: rgba(232,230,223,0.1); }
+  [data-theme="dark"] .service-item { border-bottom-color: rgba(232,230,223,0.08); }
+  [data-theme="dark"] .service-item:hover { background: rgba(232,230,223,0.03); }
+  [data-theme="dark"] .service-num { color: rgba(232,230,223,0.3); }
+  [data-theme="dark"] .service-desc { color: rgba(232,230,223,0.5); }
+
+  [data-theme="dark"] .gallery-count { color: rgba(232,230,223,0.3); }
+  [data-theme="dark"] .carousel-dot { background: rgba(232,230,223,0.18); }
+
+  [data-theme="dark"] .btn-outline {
+    border-color: rgba(232,230,223,0.35);
+    color: #E8E6DF;
+  }
+  [data-theme="dark"] .btn-outline:hover {
+    background: #E8E6DF;
+    color: #181818;
+    border-color: #E8E6DF;
+  }
+
+  [data-theme="dark"] .contact-detail-label { color: rgba(232,230,223,0.35); }
+  [data-theme="dark"] .contact-detail-value { color: #E8E6DF; }
+  [data-theme="dark"] a.contact-detail-value:hover { color: rgba(232,230,223,0.55); }
+  [data-theme="dark"] .contact-social-links a { color: #E8E6DF; border-bottom-color: rgba(232,230,223,0.2); }
+  [data-theme="dark"] .form-field { border-bottom-color: rgba(232,230,223,0.12); }
+  [data-theme="dark"] .form-field input,
+  [data-theme="dark"] .form-field textarea { color: #E8E6DF; }
+  [data-theme="dark"] .form-field input::placeholder,
+  [data-theme="dark"] .form-field textarea::placeholder { color: rgba(232,230,223,0.28); }
+  [data-theme="dark"] .form-submit:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
     .service-item { grid-template-columns: 60px 1fr 1fr; gap: 24px; }
@@ -908,8 +997,14 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -1174,6 +1269,13 @@
     dot.addEventListener('click', () => {
       carouselTrack.scrollTo({ left: i * carouselTrack.clientWidth, behavior: 'smooth' });
     });
+  });
+
+  // ── Dark mode toggle ──
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
   });
 
   // ── Nav scroll + theme ──
