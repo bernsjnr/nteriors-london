@@ -778,6 +778,17 @@
   }
 
   .form-submit:hover { background: transparent; color: var(--terracotta); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-status {
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    min-height: 1.5em;
+    margin-top: 16px;
+  }
+  .form-status.success { color: var(--terracotta); }
+  .form-status.error   { color: #b94a38; }
 
   /* ─── FOOTER ─── */
   footer {
@@ -1217,21 +1228,22 @@
         </div>
       </div>
     </div>
-    <div class="contact-form reveal" style="transition-delay: 0.12s;">
+    <form class="contact-form reveal" id="contactForm" style="transition-delay: 0.12s;" novalidate>
       <div class="form-field">
-        <input type="text" placeholder="Your Name">
+        <input type="text" name="name" placeholder="Your Name" required>
       </div>
       <div class="form-field">
-        <input type="email" placeholder="Email Address">
+        <input type="email" name="email" placeholder="Email Address" required>
       </div>
       <div class="form-field">
-        <input type="text" placeholder="Subject">
+        <input type="text" name="subject" placeholder="Subject">
       </div>
       <div class="form-field">
-        <textarea placeholder="Tell us about your project..."></textarea>
+        <textarea name="message" placeholder="Tell us about your project..." required></textarea>
       </div>
-      <button class="form-submit">Send Enquiry</button>
-    </div>
+      <p class="form-status" id="formStatus"></p>
+      <button class="form-submit" type="submit">Send Enquiry</button>
+    </form>
   </div>
 </section>
 
@@ -1269,6 +1281,39 @@
     dot.addEventListener('click', () => {
       carouselTrack.scrollTo({ left: i * carouselTrack.clientWidth, behavior: 'smooth' });
     });
+  });
+
+  // ── Contact form ──
+  const contactForm   = document.getElementById('contactForm');
+  const formStatus    = document.getElementById('formStatus');
+
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.form-submit');
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = 'Sending…';
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    try {
+      const res  = await fetch('contact.php', { method: 'POST', body: new FormData(contactForm) });
+      const json = await res.json();
+      if (json.success) {
+        contactForm.reset();
+        formStatus.textContent = 'Message sent — we\'ll be in touch soon.';
+        formStatus.classList.add('success');
+      } else {
+        formStatus.textContent = json.error || 'Something went wrong. Please try again.';
+        formStatus.classList.add('error');
+      }
+    } catch {
+      formStatus.textContent = 'Something went wrong. Please try again.';
+      formStatus.classList.add('error');
+    }
+
+    btn.disabled = false;
+    btn.textContent = original;
   });
 
   // ── Dark mode toggle ──
