@@ -487,6 +487,12 @@
     overflow: hidden;
     cursor: pointer;
     background: rgba(30,30,30,0.05);
+    transition: opacity 0.4s ease;
+  }
+
+  body.lightbox-open .gallery-item {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .gallery-item:nth-child(1) { aspect-ratio: 4/5; }
@@ -1257,6 +1263,7 @@
     lightboxImg.alt = images[current].label;
     lightboxCtr.textContent = `${current + 1} / ${images.length}`;
     lightbox.classList.add('open');
+    document.body.classList.add('lightbox-open');
     savedScrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
@@ -1266,6 +1273,7 @@
 
   function closeLightbox() {
     lightbox.classList.remove('open');
+    document.body.classList.remove('lightbox-open');
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.top = '';
