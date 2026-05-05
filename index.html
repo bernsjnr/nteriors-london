@@ -430,33 +430,61 @@
   .services-list { border-top: 1px solid rgba(30,30,30,0.1); }
 
   .service-item {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-    padding: 40px 0;
     border-bottom: 1px solid rgba(30,30,30,0.08);
-    cursor: default;
-    transition: background 0.3s;
   }
 
-  .service-item:hover { background: rgba(30,30,30,0.02); margin: 0 -60px; padding: 40px 60px; }
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 36px 0;
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: var(--font);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s, margin 0.3s, padding 0.3s;
+  }
+
+  .service-header:hover { background: rgba(30,30,30,0.02); margin: 0 -60px; padding: 36px 60px; }
 
   .service-num {
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.18em;
     color: rgba(30,30,30,0.3);
-    padding-top: 4px;
+    flex-shrink: 0;
+    width: 60px;
   }
 
   .service-name {
+    flex: 1;
     font-size: clamp(1.1rem, 1.8vw, 1.4rem);
     font-weight: 300;
     letter-spacing: -0.02em;
     line-height: 1.3;
-    padding-top: 2px;
+    color: var(--ink);
   }
+
+  .service-toggle {
+    font-size: 1.4rem;
+    font-weight: 200;
+    color: rgba(30,30,30,0.35);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .service-item.open .service-toggle { transform: rotate(45deg); }
+
+  .service-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .service-item.open .service-body { max-height: 300px; }
 
   .service-desc {
     font-size: 0.875rem;
@@ -464,20 +492,8 @@
     line-height: 1.8;
     color: rgba(30,30,30,0.5);
     letter-spacing: -0.005em;
+    padding: 0 0 32px 100px;
   }
-
-  .service-arrow {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 4px;
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: opacity 0.3s, transform 0.3s;
-    color: rgba(30,30,30,0.3);
-  }
-
-  .service-item:hover .service-arrow { opacity: 1; transform: translateX(0); }
-  .service-arrow svg { width: 16px; height: 16px; }
 
   /* ─── GALLERY ─── */
   #work {
@@ -851,8 +867,10 @@
   [data-theme="dark"] .services-intro { color: rgba(232,230,223,0.55); }
   [data-theme="dark"] .services-list { border-top-color: rgba(232,230,223,0.1); }
   [data-theme="dark"] .service-item { border-bottom-color: rgba(232,230,223,0.08); }
-  [data-theme="dark"] .service-item:hover { background: rgba(232,230,223,0.03); }
+  [data-theme="dark"] .service-header:hover { background: rgba(232,230,223,0.03); }
   [data-theme="dark"] .service-num { color: rgba(232,230,223,0.3); }
+  [data-theme="dark"] .service-name { color: #E8E6DF; }
+  [data-theme="dark"] .service-toggle { color: rgba(232,230,223,0.35); }
   [data-theme="dark"] .service-desc { color: rgba(232,230,223,0.5); }
 
   [data-theme="dark"] .gallery-count { color: rgba(232,230,223,0.3); }
@@ -886,7 +904,7 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
-    .service-item { grid-template-columns: 60px 1fr 1fr; gap: 24px; }
+    .service-header { gap: 24px; }
     .about-top { gap: 60px; }
     .contact-inner { gap: 80px; }
   }
@@ -922,9 +940,10 @@
     .stat-label { margin-top: 0; }
 
     .services-header { grid-template-columns: 1fr; gap: 24px; }
-    .service-item { grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
-    .service-desc { grid-column: 2; font-size: 0.82rem; margin-top: -8px; }
-    .service-item:hover { margin: 0; padding: 40px 0; }
+    .service-header { gap: 16px; padding: 28px 0; }
+    .service-num { width: 40px; }
+    .service-desc { padding: 0 0 24px 56px; font-size: 0.82rem; }
+    .service-header:hover { margin: 0; padding: 28px 0; }
 
     .carousel-slide { aspect-ratio: 4/3; }
 
@@ -1031,7 +1050,6 @@
       The boutique studio intentionally curates spaces that elevate everyday living — interiors layered with warmth, depth and <em>emotion</em> to support the rhythms of modern life.
     </blockquote>
     <div class="philosophy-footer reveal" style="transition-delay: 0.2s;">
-      <span class="philosophy-attr">Nteriors London — Est. 2023</span>
       <a href="#contact" class="btn-outline">
         Start a Project
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1054,34 +1072,64 @@
     </div>
     <div class="services-list">
       <div class="service-item reveal">
-        <span class="service-num">01</span>
-        <span class="service-name">Discovery &amp; Consultation</span>
-        <p class="service-desc">We begin with an initial consultation to understand your brief, vision, lifestyle, needs, and the purpose of the space.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">01</span>
+          <span class="service-name">Discovery &amp; Consultation</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">We begin with an initial consultation to understand your brief, vision, lifestyle, needs, and the purpose of the space.</p>
+        </div>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.06s;">
-        <span class="service-num">02</span>
-        <span class="service-name">Concept Development</span>
-        <p class="service-desc">We create the creative direction for your project, including moodboards, colour palettes, material inspiration, and overall design narrative.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">02</span>
+          <span class="service-name">Concept Development</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">We create the creative direction for your project, including moodboards, colour palettes, material inspiration, and overall design narrative.</p>
+        </div>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.12s;">
-        <span class="service-num">03</span>
-        <span class="service-name">Space Planning &amp; Layout</span>
-        <p class="service-desc">Optimising flow, functionality, and comfort to ensure the space supports everyday living.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">03</span>
+          <span class="service-name">Space Planning &amp; Layout</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">Optimising flow, functionality, and comfort to ensure the space supports everyday living.</p>
+        </div>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.18s;">
-        <span class="service-num">04</span>
-        <span class="service-name">Design Development</span>
-        <p class="service-desc">We refine concepts with detailed selections, drawings and renders covering furniture, finishes, lighting, textures, and key design elements.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">04</span>
+          <span class="service-name">Design Development</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">We refine concepts with detailed selections, drawings and renders covering furniture, finishes, lighting, textures, and key design elements.</p>
+        </div>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.24s;">
-        <span class="service-num">05</span>
-        <span class="service-name">Project Coordination</span>
-        <p class="service-desc">Structured support for sourcing, working alongside suppliers and trades to ensure the design is executed smoothly.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">05</span>
+          <span class="service-name">Project Coordination</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">Structured support for sourcing, working alongside suppliers and trades to ensure the design is executed smoothly.</p>
+        </div>
       </div>
       <div class="service-item reveal" style="transition-delay: 0.3s;">
-        <span class="service-num">06</span>
-        <span class="service-name">Styling &amp; Final Finishing</span>
-        <p class="service-desc">Curating furnishings, decor, and layered details that bring the space together and complete the vision.</p>
+        <button class="service-header" aria-expanded="false">
+          <span class="service-num">06</span>
+          <span class="service-name">Styling &amp; Final Finishing</span>
+          <span class="service-toggle">+</span>
+        </button>
+        <div class="service-body">
+          <p class="service-desc">Curating furnishings, decor, and layered details that bring the space together and complete the vision.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1274,6 +1322,22 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Services accordion ──
+  document.querySelectorAll('.service-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.service-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.service-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.service-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 
   // ── Smooth scroll ──
   document.querySelectorAll('a[href^="#"]').forEach(a => {
