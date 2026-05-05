@@ -662,10 +662,6 @@
   .contact-inner {
     max-width: 1400px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 120px;
-    align-items: start;
   }
 
   .contact-left {}
@@ -720,75 +716,25 @@
 
   .contact-social-links a:hover { border-color: var(--terracotta); color: var(--terracotta); }
 
-  /* Form */
-  .contact-form { display: flex; flex-direction: column; gap: 0; }
-
-  .form-field {
-    position: relative;
-    border-bottom: 1px solid rgba(30,30,30,0.12);
-  }
-
-  .form-field input,
-  .form-field textarea {
-    width: 100%;
-    padding: 22px 0;
-    border: none;
-    background: transparent;
-    font-family: var(--font);
-    font-size: 0.9375rem;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    outline: none;
-  }
-
-  .form-field textarea { resize: none; min-height: 140px; }
-
-  .form-field::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 0;
-    width: 0; height: 1px;
-    background: var(--terracotta);
-    transition: width 0.4s ease;
-  }
-
-  .form-field:focus-within::after { width: 100%; }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: rgba(30,30,30,0.28);
-    font-weight: 300;
-  }
-
-  .form-submit {
-    align-self: flex-start;
-    margin-top: 40px;
-    padding: 16px 40px;
-    background: var(--terracotta);
-    color: var(--linen);
-    border: 1px solid var(--terracotta);
-    font-family: var(--font);
+  .contact-email-cta {
+    display: inline-block;
+    margin-top: 48px;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    cursor: pointer;
+    color: var(--linen);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 16px 40px;
+    text-decoration: none;
     transition: background 0.4s, color 0.4s, border-color 0.4s;
   }
 
-  .form-submit:hover { background: transparent; color: var(--terracotta); }
-  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  .form-status {
-    font-size: 0.875rem;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    min-height: 1.5em;
-    margin-top: 16px;
+  .contact-email-cta:hover {
+    background: transparent;
+    color: var(--ink);
   }
-  .form-status.success { color: var(--terracotta); }
-  .form-status.error   { color: #b94a38; }
 
   /* ─── FOOTER ─── */
   footer {
@@ -943,12 +889,17 @@
   [data-theme="dark"] .contact-detail-value { color: #E8E6DF; }
   [data-theme="dark"] a.contact-detail-value:hover { color: rgba(232,230,223,0.55); }
   [data-theme="dark"] .contact-social-links a { color: #E8E6DF; border-bottom-color: rgba(232,230,223,0.2); }
-  [data-theme="dark"] .form-field { border-bottom-color: rgba(232,230,223,0.12); }
-  [data-theme="dark"] .form-field input,
-  [data-theme="dark"] .form-field textarea { color: #E8E6DF; }
-  [data-theme="dark"] .form-field input::placeholder,
-  [data-theme="dark"] .form-field textarea::placeholder { color: rgba(232,230,223,0.28); }
-  [data-theme="dark"] .form-submit:hover { color: var(--terracotta); border-color: var(--terracotta); }
+  [data-theme="dark"] .contact-email-cta {
+    color: var(--ink);
+    background: var(--linen);
+    border-color: var(--linen);
+  }
+
+  [data-theme="dark"] .contact-email-cta:hover {
+    background: transparent;
+    color: var(--linen);
+    border-color: var(--linen);
+  }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
@@ -1245,23 +1196,8 @@
           <span class="contact-detail-value">Full room design — concept to completion<br>E-design available upon request</span>
         </div>
       </div>
+      <a href="mailto:nali@nteriorslondon.com?subject=Hello!" class="contact-email-cta">Send us an email</a>
     </div>
-    <form class="contact-form reveal" id="contactForm" style="transition-delay: 0.12s;" novalidate>
-      <div class="form-field">
-        <input type="text" name="name" placeholder="Your Name" required>
-      </div>
-      <div class="form-field">
-        <input type="email" name="email" placeholder="Email Address" required>
-      </div>
-      <div class="form-field">
-        <input type="text" name="subject" placeholder="Subject">
-      </div>
-      <div class="form-field">
-        <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-      </div>
-      <p class="form-status" id="formStatus"></p>
-      <button class="form-submit" type="submit">Send Enquiry</button>
-    </form>
   </div>
 </section>
 
@@ -1299,39 +1235,6 @@
     dot.addEventListener('click', () => {
       carouselTrack.scrollTo({ left: i * carouselTrack.clientWidth, behavior: 'smooth' });
     });
-  });
-
-  // ── Contact form ──
-  const contactForm   = document.getElementById('contactForm');
-  const formStatus    = document.getElementById('formStatus');
-
-  contactForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const btn = contactForm.querySelector('.form-submit');
-    btn.disabled = true;
-    const original = btn.textContent;
-    btn.textContent = 'Sending…';
-    formStatus.textContent = '';
-    formStatus.className = 'form-status';
-
-    try {
-      const res  = await fetch('contact.php', { method: 'POST', body: new FormData(contactForm) });
-      const json = await res.json();
-      if (json.success) {
-        contactForm.reset();
-        formStatus.textContent = 'Message sent — we\'ll be in touch soon.';
-        formStatus.classList.add('success');
-      } else {
-        formStatus.textContent = json.error || 'Something went wrong. Please try again.';
-        formStatus.classList.add('error');
-      }
-    } catch {
-      formStatus.textContent = 'Something went wrong. Please try again.';
-      formStatus.classList.add('error');
-    }
-
-    btn.disabled = false;
-    btn.textContent = original;
   });
 
   // ── Dark mode toggle ──
