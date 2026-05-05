@@ -187,7 +187,7 @@
     position: relative;
     height: 100vh;
     min-height: 680px;
-    background: var(--ink);
+    background: var(--linen);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -218,7 +218,7 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(244,242,235,0.35);
+    color: rgba(30,30,30,0.35);
     margin-bottom: 32px;
   }
 
@@ -226,14 +226,14 @@
     font-size: clamp(3.2rem, 7vw, 7.5rem);
     font-weight: 200;
     line-height: 1.04;
-    color: var(--linen);
+    color: var(--ink);
     letter-spacing: -0.04em;
   }
 
   .hero h1 em {
     font-style: italic;
     font-weight: 200;
-    color: rgba(244,242,235,0.45);
+    color: rgba(30,30,30,0.45);
   }
 
   .hero-aside {
@@ -248,14 +248,14 @@
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(244,242,235,0.25);
+    color: rgba(30,30,30,0.25);
     writing-mode: vertical-rl;
   }
 
   .hero-line {
     width: 1px;
     height: 60px;
-    background: linear-gradient(to bottom, rgba(244,242,235,0.2), transparent);
+    background: linear-gradient(to bottom, rgba(30,30,30,0.2), transparent);
     animation: pulse 2.5s ease-in-out infinite;
   }
 
@@ -352,7 +352,7 @@
 
   /* ─── PHILOSOPHY ─── */
   .philosophy {
-    background: var(--ink);
+    background: var(--linen);
     padding: 160px 60px;
   }
 
@@ -366,19 +366,19 @@
     font-weight: 200;
     line-height: 1.15;
     letter-spacing: -0.03em;
-    color: var(--linen);
+    color: var(--ink);
     max-width: 1100px;
   }
 
   .philosophy-quote em {
     font-style: italic;
-    color: rgba(244,242,235,0.35);
+    color: rgba(30,30,30,0.35);
   }
 
   .philosophy-footer {
     margin-top: 80px;
     padding-top: 40px;
-    border-top: 1px solid rgba(244,242,235,0.08);
+    border-top: 1px solid rgba(30,30,30,0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -389,7 +389,7 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(244,242,235,0.25);
+    color: rgba(30,30,30,0.25);
   }
 
   /* ─── SERVICES ─── */
@@ -792,12 +792,12 @@
 
   /* ─── FOOTER ─── */
   footer {
-    background: var(--ink);
+    background: var(--linen);
     padding: 40px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(244,242,235,0.06);
+    border-top: 1px solid rgba(30,30,30,0.08);
   }
 
   .footer-logo img { height: 15px; width: auto; display: block; }
@@ -813,12 +813,12 @@
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.04em;
-    color: rgba(244,242,235,0.28);
+    color: rgba(30,30,30,0.35);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .footer-links a:hover { color: rgba(244,242,235,0.7); }
+  .footer-links a:hover { color: rgba(30,30,30,0.7); }
 
   /* ─── REVEAL ─── */
   .reveal {
@@ -878,9 +878,27 @@
 
   /* ─── DARK MODE ─── */
   [data-theme="dark"] body {
-    background: #181818;
+    background: var(--ink);
     color: #E8E6DF;
   }
+
+  [data-theme="dark"] .hero { background: var(--ink); }
+  [data-theme="dark"] .hero-meta { color: rgba(244,242,235,0.35); }
+  [data-theme="dark"] .hero h1 { color: var(--linen); }
+  [data-theme="dark"] .hero h1 em { color: rgba(244,242,235,0.45); }
+  [data-theme="dark"] .hero-aside span { color: rgba(244,242,235,0.25); }
+  [data-theme="dark"] .hero-line { background: linear-gradient(to bottom, rgba(244,242,235,0.2), transparent); }
+
+  [data-theme="dark"] .philosophy { background: var(--ink); }
+  [data-theme="dark"] .philosophy-quote { color: var(--linen); }
+  [data-theme="dark"] .philosophy-quote em { color: rgba(244,242,235,0.35); }
+  [data-theme="dark"] .philosophy-footer { border-top-color: rgba(244,242,235,0.08); }
+  [data-theme="dark"] .philosophy-attr { color: rgba(244,242,235,0.25); }
+
+  [data-theme="dark"] footer { background: var(--ink); border-top-color: rgba(244,242,235,0.06); }
+  [data-theme="dark"] .footer-links a,
+  [data-theme="dark"] .footer-links span { color: rgba(244,242,235,0.28); }
+  [data-theme="dark"] .footer-links a:hover { color: rgba(244,242,235,0.7); }
 
   /* Nav: keep dark when over sections that are now dark in dark mode */
   [data-theme="dark"] nav.nav-light { background: var(--ink); }
@@ -917,7 +935,7 @@
   }
   [data-theme="dark"] .btn-outline:hover {
     background: #E8E6DF;
-    color: #181818;
+    color: var(--ink);
     border-color: #E8E6DF;
   }
 
@@ -1028,7 +1046,7 @@
 </div>
 
 <!-- HERO -->
-<section class="hero" data-nav="dark">
+<section class="hero" data-nav="light">
   <div class="hero-content">
     <div class="hero-text">
       <p class="hero-meta">Interior Design Studio — London</p>
@@ -1072,7 +1090,7 @@
 </section>
 
 <!-- PHILOSOPHY -->
-<section class="philosophy" data-nav="dark">
+<section class="philosophy" data-nav="light">
   <div class="philosophy-inner">
     <p class="eyebrow eyebrow-linen reveal">Philosophy</p>
     <blockquote class="philosophy-quote reveal" style="transition-delay: 0.1s;">
@@ -1248,7 +1266,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer data-nav="dark">
+<footer data-nav="light">
   <div class="footer-logo"><img src="nteriors-logo.svg" alt="Nteriors London"></div>
   <div class="footer-links">
     <a href="#about">About</a>
