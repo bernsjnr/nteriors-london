@@ -352,7 +352,7 @@
 
   /* ─── PHILOSOPHY ─── */
   .philosophy {
-    background: var(--espresso);
+    background: var(--blush);
     padding: 160px 60px;
   }
 
@@ -366,19 +366,19 @@
     font-weight: 200;
     line-height: 1.15;
     letter-spacing: -0.03em;
-    color: var(--linen);
+    color: var(--ink);
     max-width: 1100px;
   }
 
   .philosophy-quote em {
     font-style: italic;
-    color: var(--amber);
+    color: var(--espresso);
   }
 
   .philosophy-footer {
     margin-top: 80px;
     padding-top: 40px;
-    border-top: 1px solid rgba(244,242,235,0.15);
+    border-top: 1px solid rgba(30,30,30,0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -389,7 +389,18 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--amber);
+    color: var(--terracotta);
+  }
+
+  .philosophy .btn-outline {
+    border-color: rgba(30,30,30,0.35);
+    color: var(--ink);
+  }
+
+  .philosophy .btn-outline:hover {
+    background: var(--ink);
+    color: var(--linen);
+    border-color: var(--ink);
   }
 
   /* ─── SERVICES ─── */
@@ -608,7 +619,7 @@
 
   /* ─── CTA BAND ─── */
   .cta-band {
-    background: var(--terracotta);
+    background: var(--ink);
     padding: 160px 60px;
   }
 
@@ -636,7 +647,7 @@
     font-size: 0.875rem;
     font-weight: 300;
     line-height: 1.7;
-    color: rgba(244,242,235,0.72);
+    color: rgba(244,242,235,0.45);
     text-align: right;
     max-width: 280px;
     letter-spacing: -0.01em;
@@ -669,8 +680,6 @@
 
   .btn-outline svg { width: 14px; height: 14px; transition: transform 0.3s; }
   .btn-outline:hover svg { transform: translateX(4px); }
-
-  .cta-band .btn-outline:hover { color: var(--terracotta); }
 
   /* ─── CONTACT ─── */
   #contact {
@@ -862,6 +871,13 @@
   [data-theme="dark"] #work,
   [data-theme="dark"] #contact { border-top-color: rgba(232,230,223,0.08); }
 
+  [data-theme="dark"] .philosophy { background: var(--espresso); }
+  [data-theme="dark"] .philosophy .philosophy-quote { color: var(--linen); }
+  [data-theme="dark"] .philosophy .philosophy-quote em { color: var(--amber); }
+  [data-theme="dark"] .philosophy .philosophy-footer { border-top-color: rgba(244,242,235,0.15); }
+  [data-theme="dark"] .philosophy .btn-outline { border-color: rgba(244,242,235,0.35); color: var(--linen); }
+  [data-theme="dark"] .philosophy .btn-outline:hover { background: var(--linen); color: var(--ink); border-color: var(--linen); }
+
   [data-theme="dark"] .about-right p { color: rgba(232,230,223,0.65); }
   [data-theme="dark"] .about-stats { border-top-color: rgba(232,230,223,0.1); }
   [data-theme="dark"] .stat-item { border-right-color: rgba(232,230,223,0.08); border-bottom-color: rgba(232,230,223,0.08); }
@@ -1047,7 +1063,7 @@
 </section>
 
 <!-- PHILOSOPHY -->
-<section class="philosophy" data-nav="dark">
+<section class="philosophy" data-nav="light">
   <div class="philosophy-inner">
     <p class="eyebrow eyebrow-linen reveal">Philosophy</p>
     <blockquote class="philosophy-quote reveal" style="transition-delay: 0.1s;">
