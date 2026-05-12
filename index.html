@@ -380,7 +380,6 @@
   .philosophy-footer {
     margin-top: 80px;
     padding-top: 40px;
-    border-top: 1px solid rgba(244,242,235,0.25);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -393,6 +392,18 @@
     text-transform: uppercase;
     color: var(--linen);
     opacity: 0.6;
+  }
+
+  .philosophy .btn-outline {
+    background: var(--linen);
+    color: var(--wine);
+    border-color: var(--linen);
+  }
+
+  .philosophy .btn-outline:hover {
+    background: transparent;
+    color: var(--linen);
+    border-color: rgba(244,242,235,0.5);
   }
 
   /* ─── SERVICES ─── */
@@ -866,9 +877,8 @@
   [data-theme="dark"] .philosophy { background: var(--wine); }
   [data-theme="dark"] .philosophy .philosophy-quote { color: var(--linen); }
   [data-theme="dark"] .philosophy .philosophy-quote em { color: var(--amber); }
-  [data-theme="dark"] .philosophy .philosophy-footer { border-top-color: rgba(244,242,235,0.15); }
-  [data-theme="dark"] .philosophy .btn-outline { border-color: rgba(244,242,235,0.35); color: var(--linen); }
-  [data-theme="dark"] .philosophy .btn-outline:hover { background: var(--linen); color: var(--ink); border-color: var(--linen); }
+  [data-theme="dark"] .philosophy .btn-outline { background: var(--linen); color: var(--wine); border-color: var(--linen); }
+  [data-theme="dark"] .philosophy .btn-outline:hover { background: transparent; color: var(--linen); border-color: rgba(244,242,235,0.5); }
 
   [data-theme="dark"] .about-right p { color: rgba(232,230,223,0.65); }
   [data-theme="dark"] .about-stats { border-top-color: rgba(232,230,223,0.1); }
